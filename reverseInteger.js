@@ -1,20 +1,12 @@
 const reverse = (num) => {
-    if (num > 2147483647 || num < -2147483647 ) return 0
-    const inputStr = "" + num
-    let returnNum;
-    if (num >= 0) {
-        returnNum = Number(inputStr.split('').reverse().join(''))
-        if (returnNum > 2147483647) return 0
-
-    } 
-    if (num < 0) {
-        const splitNum = inputStr.split('')
-        const sign = splitNum.shift()
-        returnNum = Number(sign + splitNum.reverse().join(''))
-        if (returnNum < -2147483647) return 0
-    }
-    
-    return returnNum
+    // check if num is negative
+    const isNeg = num < 0 ? true : false
+    // define reversed to be the abs value of num, stringify, split, reverse, join
+    const reversed = Number(Math.abs(num).toString().split('').reverse().join(''))
+    // if reversed is greater than the limit, return 0
+    if (reversed > 2147483647) return 0
+    // if num is negative, return reversed times negative 1, else return reversed
+    return isNeg ? reversed * -1 : reversed
 };
 
 console.log(reverse(123))
