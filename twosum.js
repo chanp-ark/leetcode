@@ -6,4 +6,5 @@ const twoSum = (nums, target) => {
         if (track[findNum] !== undefined) return [track[current], track[findNum]];
         track[current] = i;
     }
+    return `There are no two numbers that add up to ${target}`
 };
