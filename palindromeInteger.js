@@ -14,10 +14,9 @@ const palindromeInteger = num => {
     return false
 }
 
-
 console.log("should be true: ", palindromeInteger(1221))
 console.log("should be false: ", palindromeInteger(-121))
-console.log("should be false for 10: ", palindromeInteger(10))
+console.log("should be false: ", palindromeInteger(10))
 console.log("should be true: ", palindromeInteger(95859))
 console.log("should be false: ", palindromeInteger(1133))
 console.log("should be false: ", palindromeInteger(123123))
