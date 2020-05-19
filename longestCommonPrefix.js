@@ -4,44 +4,35 @@
 
 // All given inputs are in lowercase letters a-z.
 
-const longestCommonPrefix = strings => {
+const longestCommonPrefix = arr => {
     
-    if (strings.length < 1 ) return ""
+    if (arr.length < 1 ) return ""
     
-    if (strings.length === 1) return strings[0]
+    if (arr.length === 1) return arr[0]
     
-    const prefixs = {};
+    let common = arr[0][0]
     
-    let init = strings[0][0]
-    
-    
-    for (let i = 0; i < strings.length; i += 1) {
-        const string = strings[i];
-        if (string[0] !== init || !string) return ""
-        for (let j = 0; j < string.length; j += 1) {
-        const substring = string.slice(0, j + 1);
-        if (prefixs[substring] === undefined) prefixs[substring] = 1;
-        else prefixs[substring] += 1;
+    for (let i = 0; i < arr.length; i+=1) {
+        const str = arr[i]
+        if (!str ) return ""
+        for (let j = 1; j < arr.length; j+=1) {
+            const compare = arr[j]
+            if (common[0] !== compare[0]) return ""
+            let count = 0
+            while (count < compare.length) {
+                if (str[count] !== compare[count] && j === arr.length-1) return common.slice(-count)
+                common += compare[count]
+                count ++
+            }
+            common = common.slice(-count)
         }
     }
-    console.log(prefixs)
+    return common
     
-    let count = 0;
-    let keyLength = 0;
-    let returnPre;
-    for (let key in prefixs) {
-       if (prefixs[key] >= count && key.length > keyLength) {
-            count = prefixs[key]
-           keyLength = key.length
-           returnPre = key
-       }
-    }
-    return returnPre
 };
 
-console.log("should be 'c' : ", longestCommonPrefix(["", ""]))
-// console.log("should be 'fl' : ", longestCommonPrefix(["flower","flow","flight"]))
-// console.log("should be 'c' : ", longestCommonPrefix(["c", "c"]))
-// console.log("should be 'chanypark' : ", longestCommonPrefix(["chanypark", "chanypark"]))
-// console.log("should be ' ' : ", longestCommonPrefix(["baab","bacb","b","cbc"]))
-// console.log("should be 'aa' : ", longestCommonPrefix(["aacc","aa","aa","aa","aaca"]))
+console.log("should be 'fl' : ", longestCommonPrefix(["flower","flow","flight"]))
+console.log("should be 'c' : ", longestCommonPrefix(["c", "c"]))
+console.log("should be 'chanypark' : ", longestCommonPrefix(["chanypark", "chanypark"]))
+console.log("should be ' ' : ", longestCommonPrefix(["baab","bacb","b","cbc"]))
+console.log("should be 'aa' : ", longestCommonPrefix(["aacc","aa","aa","aa","aaca"]))
