@@ -9,18 +9,23 @@
 const isValid = (str) => {
     if (!str) return true
     if (str.length %2 === 1) return false
+    
     const parenPairs = {
         "(" : ")",
         "[" : "]",
         "{" : "}"
     }
+    
     let targetParen;
     let count = 0;
     let trackStr = ""
+    
     while(count < str.length) {
         let curParen = str[count]
         targetParen = parenPairs[curParen]
+        
         if (targetParen) trackStr += curParen
+        
         if (targetParen === undefined) {
             if (curParen !== parenPairs[trackStr[trackStr.length-1]]) return false
             trackStr = trackStr.slice(0, trackStr.length-1)
