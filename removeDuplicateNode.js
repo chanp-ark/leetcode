@@ -17,22 +17,16 @@ const deleteDuplicates = head => {
     let nextNode = curNode.next
 
     while ( curNode !== null && nextNode !== null) {
-        if ( curNode.val !== nextNode.val ) {
-            curNode = nextNode
-        } else {
-            while (curNode.val === nextNode.val) {
-                nextNode = nextNode.next
-                if (nextNode === null) {
-                    curNode.next = nextNode
-                    return head
-                }
+        while (curNode.val === nextNode.val) {
+            nextNode = nextNode.next
+            if (nextNode === null) {
+                curNode.next = null
+                return head
             }
-            curNode.next = nextNode
-            curNode = nextNode
         }
-        if (curNode !== null) nextNode = curNode.next
+        curNode.next = nextNode
+        curNode = nextNode
+        nextNode = curNode.next
     }
-    
-
     return head
 };
