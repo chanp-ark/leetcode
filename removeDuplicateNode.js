@@ -11,22 +11,24 @@
  */
 const deleteDuplicates = head => {
     
-    if (head === null) return head
-    
+    if(head === null) return null
+        
     let curNode = head
     let nextNode = curNode.next
 
-    while ( curNode !== null && nextNode !== null) {
-        while (curNode.val === nextNode.val) {
+    const memo = {[curNode.val]: 1}
+        
+    while (nextNode !== null) {
+        if (memo[nextNode.val] === undefined) {
+            memo[nextNode.val] = 1
+            curNode.next = nextNode
+            curNode = nextNode
             nextNode = nextNode.next
-            if (nextNode === null) {
-                curNode.next = null
-                return head
-            }
+        } else {
+            nextNode = nextNode.next
+            curNode.next = nextNode
         }
-        curNode.next = nextNode
-        curNode = nextNode
-        nextNode = curNode.next
+       
     }
     return head
 };
