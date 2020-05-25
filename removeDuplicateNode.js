@@ -21,9 +21,8 @@ const deleteDuplicates = head => {
     while (nextNode !== null) {
         if (memo[nextNode.val] === undefined) {
             memo[nextNode.val] = 1
-            curNode.next = nextNode
             curNode = nextNode
-            nextNode = nextNode.next
+            nextNode = curNode.next
         } else {
             nextNode = nextNode.next
             curNode.next = nextNode
